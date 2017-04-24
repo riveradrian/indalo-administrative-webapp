@@ -1,0 +1,1457 @@
+<div class="container-fluid">
+    <div class="row">          
+        <h1 class="page-header">Cargar inmuebles</h1>
+
+        <uib-accordion close-others="oneAtATime">
+            <form >
+            <div uib-accordion-group class="panel-default" is-open="status.isFirstOpen">
+                <uib-accordion-heading>
+                    Encuentra una categoria
+                    <i class="pull-right glyphicon" 
+                        ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}">
+                    </i>
+                </uib-accordion-heading>
+                
+                <div class="row">
+                    <div class="col-md-4">
+                        <select class="form-control">
+                            <option ng-repeat="zone in zone.results" value="zone.id">{{zone.ubicacion}}</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <select class="form-control" ng-model="id_inmueble">
+                            <option value="1">Acción de Club</option>
+                            <option value="2">Anexos</option>
+                            <option value="3">Apartamentos</option>
+                            <option value="4">Casas</option>
+                            <option value="5">Edificios</option>
+                            <option value="6">Galpones</option>
+                            <option value="7">Habitaciones</option>
+                            <option value="8">Haciendas - Fincas</option>
+                            <option value="9">Hoteles - Resorts</option>
+                            <option value="10">Locales</option>
+                            <option value="11">Negocios</option>
+                            <option value="12">Oficinas</option>
+                            <option value="13">Parcelas de cementerio</option>
+                            <option value="14">Terrenos</option>
+                            <option value="15">Townhouses</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-control" ng-model="modalidad">
+                            <option>Arquiler</option>
+                            <option>Alquiler Vacacional</option>
+                            <option>Venta</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div uib-accordion-group class="panel-default">
+                <uib-accordion-heading>
+                    Detalles de tu publicación
+                    <i class="pull-right glyphicon" 
+                        ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}">
+                    </i>
+                </uib-accordion-heading>
+            
+                <span>Características principales</span>               
+                <br><br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">Baños</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control" ng-model="bano">
+                                        <option>Selecciona</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">Baño de servicio</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control" ng-model="bano_de_servicio">
+                                        <option>Selecciona</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">Hab. de servicio</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control" ng-model="habitacion_de_servicio">
+                                        <option>Selecciona</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">Metros&#178 de construcción</label>
+                                <div class="col-sm-7">
+                                <input class="form-control" id="inputEmail3" ng-model="metros_de_construccion">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">Habitaciones</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control" ng-model="habitaciones">
+                                        <option>Selecciona</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">Estacionamiento</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control" ng-model="estacionamiento">
+                                        <option>Selecciona</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">Antigüedad</label>
+                                <div class="col-sm-7">
+                                <input class="form-control" id="inputEmail3" ng-model="antiguedad">
+                                </div>
+                            </div>
+                        </form>
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">Nombre del edificio</label>
+                                <div class="col-sm-7">
+                                <input class="form-control" id="inputEmail3" ng-model="nombre_del_edificio">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <hr>
+            
+                <span>Caracteristicas adicionales</span>               
+                <br><br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">Lineas telefónicas</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control" ng-model="linea_telefonica">
+                                        <option>Selecciona</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">Pisos (áreas sociales)</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control" ng-model="areas_sociales">
+                                        <option>Selecciona</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-md-6">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">Pisos (cuartos)</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control" ng-model="cuartos">
+                                        <option>Selecciona</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row checkbox-options">
+                    <div class="col-md-4">
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="aire_acondicionado">
+                                Aire Acondicionado
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="cocina_empotrada">
+                                Cocina empotrada
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="jacuzzi">
+                                Jacuzzi
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="planta_electrica">
+                                Planta eléctrica
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="tv_por_cable">
+                                TV por cable
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="vista_panoramica">
+                                Vista panoramica 
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="estacionamiento_para_visitantes">
+                                Estacionamiento para visitantes
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="maletero">
+                                Maletero
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="rejas_de_seguridad">
+                                Rejas de seguridad
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="terraza">
+                                Terraza
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="estudio">
+                                Estudio / Biblioteca
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="penthouse">
+                                Penthouse
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="sauna">
+                                Sauna
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="vestier">
+                                Vestier
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <hr>
+
+                <span>Instalaciones y comodidades</span>               
+                <br><br>
+                <div class="row checkbox-options">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-md-2 control-label">Ascensores:</label>
+                            <div class="col-md-3">
+                                <select class="form-control" ng-model="ascensores">
+                                        <option>Selecciona</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                            </div>
+                        </div>
+                    </form>                      
+                    <div class="col-md-4">                        
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="area_de_bbq">
+                                Area de BBQ
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="gimnasio">
+                                Gimnasio
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="piscina">
+                                Piscina
+                            </label>
+                        </div>                                              
+                    </div>
+                    <div class="col-md-4">
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="caminerias">
+                                Caminerías
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="salon_de_fiesta">
+                                Salon de Fiesta
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="parque_infantil">
+                                Parque Infantil
+                            </label>
+                        </div>                        
+                    </div>
+                    <div class="col-md-4">
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="escalera_de_emergencia">
+                                Escalera de Emergencia
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="vigilancia_privada">
+                                Vigilancia privada
+                            </label>
+                        </div>                        
+                    </div>
+                </div>
+
+                <hr>
+
+                <span>Detalles de interés</span>               
+                <br><br>
+                <div class="row checkbox-options">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-md-2 control-label">Piso</label>
+                            <div class="col-md-3">
+                                <select class="form-control" ng-model="piso">
+                                        <option>Selecciona</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                            </div>
+                        </div>
+                    </form>                      
+                    <div class="col-md-4">                        
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="buena_distribucion">
+                                Buena Distribución 
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="conjunto_cerrado">
+                                Conjunto cerrado
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="excelente_oportunidad">
+                                Excelente oportunidad
+                            </label>
+                        </div>   
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="facil_acceso">
+                                Fácil acceso (Av. Cll y/o autopistas)
+                            </label>
+                        </div>  
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="espacioso">
+                                Espacioso
+                            </label>
+                        </div>                                          
+                    </div>
+                    <div class="col-md-4">  
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="desocupado">
+                                Desocupado
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="excelente_ubucacion">
+                                Excelente ubicación
+                            </label>
+                        </div>            
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="ideal_para_ejecutivos">
+                                Ideal para ejecutivos
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="remodelada">
+                                Remodelada
+                            </label>
+                        </div>            
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="zona_tranquila">
+                                Zona tranquila
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="condominio_economico">
+                                Condominio económico
+                            </label>
+                        </div>                       
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="excelente_vista">
+                                Excelente vista
+                            </label>
+                        </div> 
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="listo_para_mudarse">
+                                Listo para mudarse
+                            </label>
+                        </div> 
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="tipo_estudio">
+                                Tipo estudio
+                            </label>
+                        </div> 
+                    </div>
+                </div>
+
+                <hr>    
+
+                <span>Cercanias a menos de dos cuadras</span>               
+                <br><br>
+                <div class="row checkbox-options">                     
+                    <div class="col-md-4">                        
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="abasto">
+                                Abasto
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="panaderia">
+                                Panaderia
+                            </label>
+                        </div>                                              
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="centro_comercial">
+                                Centro comercial
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="farmacia">
+                                Farmacia
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="supermercado">
+                                Supermercado
+                            </label>
+                        </div>                        
+                    </div>
+                    <div class="col-md-4">
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="colegio">
+                                Colegio
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="otros_negocios">
+                                Otros negocios
+                            </label>
+                        </div>                    
+                    </div>
+                </div>
+
+                <hr>    
+
+                <span>Negociación</span>               
+                <br><br>
+                <div class="row checkbox-options">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-md-2 control-label">Horario de contacto</label>
+                            <div class="col-md-3">
+                            <input class="form-control" id="inputEmail3" ng-model="horario_de_contacto">
+                            </div>
+                        </div>
+                    </form>                      
+                    <div class="col-md-4">                        
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="negociable">
+                                Negociable
+                            </label>
+                        </div>                           
+                    </div>
+                </div>
+
+                <hr>
+
+                <span>Condiciones de negociación</span>               
+                <br><br>
+                <div class="row checkbox-options">                     
+                    <div class="col-md-4">                        
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="abstenerse_intermediarios">
+                                Abstenerse Intermediarios 
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="de_contado">
+                                De contado
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="trato_directo">
+                                Trato directo con el dueño
+                            </label>
+                        </div>                                              
+                    </div>
+                    <div class="col-md-4">
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="acuerdo_entre_las_partes">
+                                Acuerdo entre las partes
+                            </label>
+                        </div>
+                        <!--<div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="precio_a_convenir">
+                                Precio a convenir
+                            </label>
+                        </div>-->
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="verlo_previa_cita">
+                                Verlo previa cita
+                            </label>
+                        </div>                        
+                    </div>
+                    <div class="col-md-4">
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="credito_hipoptecario">
+                                Crédito hipotecario
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="se_escuchan_ofertas">
+                                Se escuchan ofertas
+                            </label>
+                        </div>                      
+                    </div>
+                </div>   
+
+                <hr>    
+
+                <div class="form-group">
+                    <label for="comment" class="col-md-2">Comentario:</label>
+                    <div class="col-md-6">
+                        <textarea class="form-control" rows="5" id="comment" ng-model="comentario"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div uib-accordion-group class="panel-default">
+                <uib-accordion-heading>
+                    Ingresa el precio
+                    <i class="pull-right glyphicon" 
+                        ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}">
+                    </i>
+                </uib-accordion-heading>
+                
+                <span>Ubicación</span>
+                <br><br>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Urbanización:</label>
+                        <div class="col-sm-6">
+                        <input class="form-control" id="inputEmail3" placeholder="" ng-model="urbanizacion">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">Dirección:</label>
+                        <div class="col-sm-6">
+                        <input type="password" class="form-control" id="inputPassword3" placeholder="Ej: Calle, Avenida, Senda" ng-model="direccion">
+                        </div>
+                    </div>
+                </form>
+
+                <hr>
+                
+                <!--<span>Datos de Contacto</span>
+                <br><br>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Telefono Opc:</label>
+                        <div class="col-sm-4">
+                        <input class="form-control" id="inputEmail3" placeholder="" ng-model="">
+                        </div>
+                    </div>
+                </form>
+
+                <hr>-->
+                
+                <span>Precio</span>
+                <br><br>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Precio:</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input type="text" class="form-control" aria-describedby="basic-addon2" ng-model="precio">
+                                <span class="input-group-addon" id="basic-addon2">Bs</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <div uib-accordion-group class="panel-default">
+                <uib-accordion-heading>
+                    Sube las fotos
+                    <i class="pull-right glyphicon" 
+                        ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}">
+                    </i>
+                </uib-accordion-heading>
+                
+                <div class="row">
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <input type="text" ng-model="fotos">
+                        <img src="http://placehold.it/171x180" alt="...">
+                        </a>
+                    </div>
+                    <!--<div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                        <img src="http://placehold.it/171x180" alt="...">
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                        <img src="http://placehold.it/171x180" alt="...">
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                        <img src="http://placehold.it/171x180" alt="...">
+                        </a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-md-3 col-xs-offset-1">
+                        <a href="#" class="thumbnail">
+                        <img src="http://placehold.it/171x180" alt="...">
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                        <img src="http://placehold.it/171x180" alt="...">
+                        </a>
+                    </div>
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                        <img src="http://placehold.it/171x180" alt="...">
+                        </a>
+                    </div>-->
+                    
+                </div>
+            </div> 
+            </form>    
+            <div class="form-group pull-right">
+                <button class="btn btn-link" ui-sref="menu.building" ui-sref-active="active">
+                    Cancelar
+                </button>
+                <button class="btn btn-primary" type="submit">Aceptar</button>
+            </div>
+               
+        </uib-accordion>
+
+<!--        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Encuentra una categoria</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <select class="form-control">
+                            <option>Acción de Club</option>
+                            <option>Anexos</option>
+                            <option>Apartamentos</option>
+                            <option>Casas</option>
+                            <option>Edificios</option>
+                            <option>Galpones</option>
+                            <option>Habitaciones</option>
+                            <option>Haciendas - Fincas</option>
+                            <option>Hoteles - Resorts</option>
+                            <option>Locales</option>
+                            <option>Negocios</option>
+                            <option>Oficinas</option>
+                            <option>Parcelas de cementerio</option>
+                            <option>Terrenos</option>
+                            <option>Townhouses</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <select class="form-control">
+                            <option>Arquiler</option>
+                            <option>Alquiler Vacacional</option>
+                            <option>Venta</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+-->
+
+<!--        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Detalles de tu publicación</h3>
+            </div>
+            <div class="panel-body">
+               <span>Características principales</span>               
+                <br><br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">Baños</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control">
+                                        <option>Selecciona</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">Baño de servicio</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control">
+                                        <option>Selecciona</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">Hab. de servicio</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control">
+                                        <option>Selecciona</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">Metros&#178 de construccion</label>
+                                <div class="col-sm-7">
+                                <input class="form-control" id="inputEmail3">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">Habitaciones</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control">
+                                        <option>Selecciona</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">Estacionamiento</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control">
+                                        <option>Selecciona</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">Antigüedad</label>
+                                <div class="col-sm-7">
+                                <input class="form-control" id="inputEmail3">
+                                </div>
+                            </div>
+                        </form>
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">Nombre del edificio</label>
+                                <div class="col-sm-7">
+                                <input class="form-control" id="inputEmail3">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <hr>
+            
+                <span>Caracteristicas adicionales</span>               
+                <br><br>
+                <div class="row">
+                    <div class="col-md-6">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">Lineas telefónicas</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control">
+                                        <option>Selecciona</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">Pisos (áreas sociales)</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control">
+                                        <option>Selecciona</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-md-6">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-4 control-label">Pisos (cuartos)</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control">
+                                        <option>Selecciona</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="row checkbox-options">
+                    <div class="col-md-4">
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Aire Acondicionado
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Cocina empotrada
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Jacuzzi
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Planta eléctrica
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                TV por cable
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Vista panoramica 
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Estacionamiento para visitantes
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Maletero
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Rejas de seguridad
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Terraza
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Estudio / Biblioteca
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Penthouse
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Sauna
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Vestier
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <hr>
+
+                <span>Instalaciones y comodidades</span>               
+                <br><br>
+                <div class="row checkbox-options">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-md-2 control-label">Ascensores:</label>
+                            <div class="col-md-3">
+                                <select class="form-control">
+                                        <option>Selecciona</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                            </div>
+                        </div>
+                    </form>                      
+                    <div class="col-md-4">                        
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Area de BBQ
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Gimnasio
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Piscina
+                            </label>
+                        </div>                                              
+                    </div>
+                    <div class="col-md-4">
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Caminerías
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Jardines
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Salos de Fiesta
+                            </label>
+                        </div>                        
+                    </div>
+                    <div class="col-md-4">
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Escalera de Emergencia
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Parque Infantil
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Vigilancia privada
+                            </label>
+                        </div>                        
+                    </div>
+                </div>
+
+                <hr>
+
+                <span>Detalles de interés</span>               
+                <br><br>
+                <div class="row checkbox-options">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-md-2 control-label">Piso</label>
+                            <div class="col-md-3">
+                                <select class="form-control">
+                                        <option>Selecciona</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                            </div>
+                        </div>
+                    </form>                      
+                    <div class="col-md-4">                        
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Buena Distribución 
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Conjunto cerrado
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Excelente oportunidad
+                            </label>
+                        </div>   
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Fácil acceso (Av. Cll y/o autopistas)
+                            </label>
+                        </div>                                           
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Muy bonito
+                            </label>
+                        </div>  
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Verlo es comprarlo
+                            </label>
+                        </div>  
+                    </div>
+                    <div class="col-md-4">  
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Desocupado
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Excelente ubicación
+                            </label>
+                        </div>            
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Ideal para ejecutivos
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Remodelada
+                            </label>
+                        </div>            
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Zona tranquila
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Condominio económico
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Espacioso
+                            </label>
+                        </div>                        
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Excelente vista
+                            </label>
+                        </div> 
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Listo para mudarse
+                            </label>
+                        </div> 
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Tipo estudio
+                            </label>
+                        </div> 
+                    </div>
+                </div>
+
+                <hr>    
+
+                <span>Cercanias a menos de dos cuadras</span>               
+                <br><br>
+                <div class="row checkbox-options">                     
+                    <div class="col-md-4">                        
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Abasto
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Estación de metro
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Panaderia
+                            </label>
+                        </div>                                              
+                    </div>
+                    <div class="col-md-4">
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Centro comercial
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Farmacia
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Supermercado
+                            </label>
+                        </div>                        
+                    </div>
+                    <div class="col-md-4">
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Colegio
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Otros negocios
+                            </label>
+                        </div>                    
+                    </div>
+                </div>
+
+                <hr>    
+
+                <span>Negociación</span>               
+                <br><br>
+                <div class="row checkbox-options">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="inputEmail3" class="col-md-2 control-label">Horario de contacto</label>
+                            <div class="col-md-3">
+                            <input class="form-control" id="inputEmail3">
+                            </div>
+                        </div>
+                    </form>                      
+                    <div class="col-md-4">                        
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Negociable
+                            </label>
+                        </div>                           
+                    </div>
+                </div>
+
+                <hr>
+
+                <span>Condiciones de negociación</span>               
+                <br><br>
+                <div class="row checkbox-options">                     
+                    <div class="col-md-4">                        
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Abstenerse Intermediarios 
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                De contado
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Trato directo con el dueño
+                            </label>
+                        </div>                                              
+                    </div>
+                    <div class="col-md-4">
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Acuerdo entre las partes
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Precio a convenir
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Verlo previa cita
+                            </label>
+                        </div>                        
+                    </div>
+                    <div class="col-md-4">
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Crédito hipotecario
+                            </label>
+                        </div>
+                        <div class="checkbox checkbox-inline-option">
+                            <label>
+                            <input type="checkbox" ng-model="">
+                                Se escuchan ofertas
+                            </label>
+                        </div>                      
+                    </div>
+                </div>   
+
+                <hr>    
+
+                <div class="form-group">
+                    <label for="comment" class="col-md-2">Comentario:</label>
+                    <div class="col-md-6">
+                        <textarea class="form-control" rows="5" id="comment"></textarea>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+-->
+
+<!--        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Ingresa el precio</h3>
+            </div>
+            <div class="panel-body">
+                <span>Ubicación</span>
+                <br><br>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Urbanización:</label>
+                        <div class="col-sm-6">
+                        <input class="form-control" id="inputEmail3" placeholder="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputPassword3" class="col-sm-2 control-label">Dirección:</label>
+                        <div class="col-sm-6">
+                        <input type="password" class="form-control" id="inputPassword3" placeholder="Ej: Calle, Avenida, Senda">
+                        </div>
+                    </div>
+                </form>
+
+                <hr>
+                
+                <span>Datos de Contacto</span>
+                <br><br>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Telefono Opc:</label>
+                        <div class="col-sm-4">
+                        <input class="form-control" id="inputEmail3" placeholder="">
+                        </div>
+                    </div>
+                </form>
+
+                <hr>
+                
+                <span>Precio</span>
+                <br><br>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Precio:</label>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <input type="text" class="form-control" aria-describedby="basic-addon2">
+                                <span class="input-group-addon" id="basic-addon2">Bs</span>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+-->
+
+<!--        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Sube las fotos</h3>
+            </div>
+            <div class="panel-body">
+                Panel content
+            </div>
+        </div>
+-->        
+
+    </div>
+</div>

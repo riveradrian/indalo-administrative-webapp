@@ -1,0 +1,88 @@
+<div class="container-fluid">
+  <div class="row">         
+      <button class="btn btn-warning pull-right" ui-sref="menu.loadZone" ui-sref-active="active">
+        Cargar Zona
+      </button> 
+      
+      <h1 class="sub-header">Vista de zona</h1>  
+      
+      <div class="row">
+        <div class="col-md-5" style="margin-top: -15px;">
+          <md-input-container class="search" layout="row">
+            <md-icon>search</md-icon>
+            <input ng-model="searchText" type="text" placeholder="Buscar">
+          </md-input-container>
+        </div>
+      </div>
+      <!--<div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Ubicación</th>
+              <th>Estatus</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="zone in zone.results">
+              <td>{{zone.id}}</td>
+              <td>{{zone.ubicacion}}</td>
+              <td>{{zone.estatus}}</td>
+              <td class="td-options">
+                <i role="button" ng-click="showModal($event, zone.id)" class="material-icons"
+                  data-toggle="modal" data-target=".bs-example-modal-lg">thumb_down</i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>-->
+
+      <md-card> 		
+        <md-toolbar class="md-table-toolbar" id="toolbar-color">
+          <div class="md-toolbar-tools">
+            <span>Zonas</span>
+            <div flex></div>
+            <md-button class="md-icon-button" ng-click="">
+              <md-icon>refresh</md-icon>
+            </md-button>
+          </div>
+        </md-toolbar>
+        
+        <md-table-container >
+          <table md-table md-progress="promise">
+            <thead md-head md-order="query.order">
+              <tr md-row>
+                <th md-column md-order-by="id">
+                <span>Id</span></th>
+                <th md-column md-order-by="Ubicacion">
+                <span>ubicación</span></th>
+                <th md-column md-order-by="estatus">
+                <span>Estado</span></th>
+              </tr>
+            </thead>
+
+            <tbody md-body>
+              <tr md-row ng-repeat="zone in zone.results |
+                                    filter:searchText | 
+                                    orderBy: query.order | 
+                                    limitTo: query.limit : 
+                                    (query.page -1) * query.limit">
+                <td md-cell>{{zone.id}}</td>
+                <td md-cell>{{zone.ubicacion}}</td>
+                <td md-cell>{{zone.estatus}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </md-table-container>
+
+        <md-table-pagination 
+          md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'}"
+          md-limit="query.limit" 
+          md-limit-options="limitOptions" 
+          md-page="query.page" 
+          md-total="{{count}}">
+        </md-table-pagination>
+      </md-card>
+  </div>
+</div>

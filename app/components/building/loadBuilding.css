@@ -1,0 +1,14 @@
+.checkbox-options{
+    padding-left: 5%;
+}
+
+.checkbox-inline-option{
+    padding: 10px 0;
+}
+
+  .horizontal-collapse {
+    height: 70px;
+  }
+  .navbar-collapse.in {
+    overflow-y: hidden;
+  }

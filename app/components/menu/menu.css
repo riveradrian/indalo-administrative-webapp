@@ -1,0 +1,14 @@
+.nav-header-options{
+    padding-top: 10px;
+}
+
+.nav > li > a{
+    color: #000;
+}
+
+.nav > li > a:hover {
+    text-decoration: none;
+    background-color: orangered;
+    color: #fff;
+}
+

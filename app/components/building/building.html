@@ -1,0 +1,766 @@
+<div class="container-fluid">
+  <div class="row">          
+    <button class="btn btn-warning pull-right" ui-sref="menu.loadBuilding" ui-sref-active="active">
+      Cargar Inmueble
+    </button>
+    <!--<button class="btn btn-warning pull-right" ui-sref="menu.loadBuilding" ui-sref-active="active">
+      Cargar tipo deInmueble
+    </button>-->
+
+    <h1 class="page-header">Vista de inmuebles</h1>
+    <!--<div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Descripción</th>
+            <th>Modalidad</th>
+            <th>Zona</th>
+            <th>Nombre del edificio</th>
+            <th>Precio</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="building in building.results">
+            <td>{{building.descripcion}}</td>
+            <td>{{building.modalidad}}</td>
+            <td>{{building.ubicacion}}</td>
+            <td>{{building.nombre_del_edificio}}</td>
+            <td>{{building.precio}}</td>
+            <td class="td-options">
+              <i role="button" ng-click="showModal($event, building.id)" class="material-icons"
+                data-toggle="modal" data-target=".bs-example-modal-lg">pageview</i>
+              <i role="button" class="material-icons"
+                ui-sref="menu.editBuilding({idBuilding: building.id})" 
+                ui-sref-active="active">mode_edit</i>
+              <i role="button" class="material-icons">delete_forever</i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>-->
+    <div class="row">
+      <div class="col-md-5" style="margin-top: -15px;">
+        <md-input-container class="search" layout="row">
+	      	<md-icon>search</md-icon>
+	    	  <input ng-model="searchText" type="text" placeholder="Buscar">
+		    </md-input-container>
+      </div>
+    </div>
+
+    <md-card> 		
+      <md-toolbar class="md-table-toolbar" id="toolbar-color">
+        <div class="md-toolbar-tools">
+          <span>inmuebles</span>
+          <div flex></div>
+          <md-button class="md-icon-button" ng-click="">
+            <md-icon>refresh</md-icon>
+          </md-button>
+        </div>
+      </md-toolbar>
+      
+      <md-table-container >
+        <table md-table md-progress="promise">
+          <thead md-head md-order="query.order">
+            <tr md-row>
+              <th md-column md-order-by="descripcion">
+              <span>Descripción</span></th>
+              <th md-column md-order-by="modalidad">
+              <span>Modalidad</span></th>
+              <th md-column md-order-by="ubicacion">
+              <span>Zona</span></th>
+              <th md-column md-order-by="nombre_del_edificio">
+              <span>Nombre del edificio</span></th>
+              <th md-column md-order-by="precio">
+              <span>Precio</span></th>
+            </tr>
+          </thead>
+
+          <tbody md-body>
+            <tr md-row ng-repeat="building in building.results |
+                                  filter:searchText | 
+                                  orderBy: query.order | 
+                                  limitTo: query.limit : 
+                                  (query.page -1) * query.limit">
+              <td md-cell>{{building.descripcion}}</td>
+              <td md-cell>{{building.modalidad}}</td>
+              <td md-cell>{{building.ubicacion}}</td>
+              <td md-cell>{{building.nombre_del_edificio}}</td>
+              <td md-cell>{{building.precio}}</td>
+                  
+              <td md-cell class="md-cell ng-binding table-button">
+                <div layout="row">
+                  <md-icon role="button" ng-click="showModal($event, building.id)"
+                    data-toggle="modal" data-target=".bs-example-modal-lg"
+                    class="td-options">
+                      pageview
+                    <md-tooltip md-direction="top">
+                      Ver Detalles
+                    </md-tooltip>
+                  </md-icon>
+
+                  <md-icon role="button" ui-sref="menu.editBuilding({idBuilding: building.id})" 
+                    ui-sref-active="active" ng-click="showAlert($event, restaurant.id_restaurant)"
+                    class="td-options">
+                      mode_edit
+                    <md-tooltip md-direction="top">
+                      Editar
+                    </md-tooltip>
+                  </md-icon>
+
+                  <md-icon role="button" class="td-options"> <!--ng-click="showAdvanced($event)"-->
+                      delete_forever
+                    <md-tooltip md-direction="top">
+                      Eliminar
+                    </md-tooltip>
+                  </md-icon>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </md-table-container>
+
+      <md-table-pagination 
+        md-label="{page: 'Página:', rowsPerPage: 'Filas por página:', of: 'de'}"
+        md-limit="query.limit" 
+        md-limit-options="limitOptions" 
+        md-page="query.page" 
+        md-total="{{count}}">
+      </md-table-pagination>
+    </md-card>
+  </div>
+</div>
+
+<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="detail-modal">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-container" ng-repeat="detail in buildingId.results">
+        <h3 class="page-header">Vista de inmuebles</h3>
+        
+
+        <span>Características principales</span>               
+        <br><br>
+        <div class="row">    
+          <div class="col-md-6">
+            <form class="form-horizontal">
+              <div class="form-group">
+                <label class="col-sm-6 control-label">Baños:</label>
+                <div class="col-sm-6">
+                  <p class="form-control-static">1</p>
+                </div>
+              </div>
+            </form>
+            <form class="form-horizontal">
+              <div class="form-group">
+                <label class="col-sm-6 control-label">Baño de Servicio:</label>
+                <div class="col-sm-6">
+                  <p class="form-control-static">1</p>
+                </div>
+              </div>
+            </form>
+            <form class="form-horizontal">
+              <div class="form-group">
+                <label class="col-sm-6 control-label">Hab. de servicio:</label>
+                <div class="col-sm-6">
+                  <p class="form-control-static">{{detail.habitacion_de_servicio}}</p>
+                </div>
+              </div>
+            </form>
+            <form class="form-horizontal">
+              <div class="form-group">
+                <label class="col-sm-6 control-label">Metros&#178 de construccion:</label>
+                <div class="col-sm-6">
+                  <p class="form-control-static">{{detail.metros_de_construccion}}</p>
+                </div>
+              </div>
+            </form>              
+          </div>
+
+            <div class="col-md-6">
+              <form class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-sm-6 control-label">Habitaciones:</label>
+                  <div class="col-sm-6">
+                    <p class="form-control-static">{{detail.habitacion}}</p>
+                  </div>
+                </div>
+              </form>
+              <form class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-sm-6 control-label">Estacionamiento:</label>
+                  <div class="col-sm-6">
+                    <p class="form-control-static">{{detail.estacionamiento}}</p>
+                  </div>
+                </div>
+              </form>
+              <form class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-sm-6 control-label">Antiguedad:</label>
+                  <div class="col-sm-6">
+                    <p class="form-control-static">{{detail.antiguedad}}</p>
+                  </div>
+                </div>
+              </form>
+              <form class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-sm-6 control-label">Nombre del edificio:</label>
+                  <div class="col-sm-6">
+                    <p class="form-control-static">{{detail.nombre_del_edificio}}</p>
+                  </div>
+                </div>
+              </form>
+            </div>
+        </div>
+
+        <hr>
+
+        <span>Características adicionales</span>               
+        <br><br>
+        <div class="row">
+          <div class="col-md-6">
+            <form class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-sm-6 control-label">Lineas telefonicas:</label>
+                  <div class="col-sm-6">
+                    <p class="form-control-static">{{detail.linea_telefonica}}</p>
+                  </div>
+                </div>
+              </form>
+              <form class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-sm-6 control-label">Pisos (areás sociales):</label>
+                  <div class="col-sm-6">
+                    <p class="form-control-static">{{detail.areas_sociales}}</p>
+                  </div>
+                </div>
+              </form>
+          </div>
+          
+          <div class="col-md-6">
+            <form class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-sm-6 control-label">Pisos (cuartos):</label>
+                  <div class="col-sm-6">
+                    <p class="form-control-static">{{detail.cuartos}}</p>
+                  </div>
+                </div>
+              </form>
+          </div>
+        </div>
+
+        <div class="row checkbox-options">
+          <div class="col-md-4">
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.aire_acondicionado"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Aire Acondicionado
+                  </label>
+              </div>
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.cocina_empotrada"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Cocina empotrada
+                  </label>
+              </div>
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.jacuzzi"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Jacuzzi
+                  </label>
+              </div>
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.planta_electrica"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Planta eléctrica
+                  </label>
+              </div>
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.tv_por_cable"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      TV por cable
+                  </label>
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.vista_panoramica"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Vista panoramica 
+                  </label>
+              </div>
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.estacionamiento_de_visitantes"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Estacionamiento para visitantes
+                  </label>
+              </div>
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.maletero"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Maletero
+                  </label>
+              </div>
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.rejas_de_seguridad"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Rejas de seguridad
+                  </label>
+              </div>
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.terraza"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Terraza
+                  </label>
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.biblioteca"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Estudio / Biblioteca
+                  </label>
+              </div>
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.penthouse"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Penthouse
+                  </label>
+              </div>
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.sauna"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Sauna
+                  </label>
+              </div>
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.vestier"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Vestier
+                  </label>
+              </div>
+          </div>
+        </div>
+
+        <hr>
+
+        <span>Instalaciones y comodidades</span>               
+        <br><br>
+        <div class="row">
+          <div class="col-md-6">
+            <form class="form-horizontal">
+              <div class="form-group">
+                <label class="col-sm-6 control-label">Ascensores:</label>
+                <div class="col-sm-6">
+                  <p class="form-control-static">{{detail.ascensores}}</p>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="row checkbox-options">              
+          <div class="col-md-4">                        
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.area_de_bbq"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Area de BBQ
+                  </label>
+              </div>
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.gimnasio"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Gimnasio
+                  </label>
+              </div>
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.piscina"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Piscina
+                  </label>
+              </div>                                              
+          </div>
+
+          <div class="col-md-4">
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.caminerias"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Caminerías
+                  </label>
+              </div>
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.salon_de_fiesta"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Salon de Fiesta
+                  </label>
+              </div>
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.parque_infantil"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Parque Infantil
+                  </label>
+              </div>                        
+          </div>
+
+          <div class="col-md-4">
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.escalera_de_emergencia"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Escalera de Emergencia
+                  </label>
+              </div>
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.vigilancia_privada"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Vigilancia privada
+                  </label>
+              </div>                        
+          </div>
+        </div>
+
+        <hr>
+
+        <span>Detalles de interes</span>               
+        <br><br>
+        <div class="row">
+          <div class="col-md-6">
+            <form class="form-horizontal">
+              <div class="form-group">
+                <label class="col-sm-6 control-label">Piso:</label>
+                <div class="col-sm-6">
+                  <p class="form-control-static">{{detail.piso}}</p>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="row checkbox-options">    
+          <div class="col-md-4">                        
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.buena_distribucion"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Buena Distribución 
+                  </label>
+              </div>
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.conjunto_cerrado"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Conjunto cerrado
+                  </label>
+              </div>
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.excelente_oportunidad"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Excelente oportunidad
+                  </label>
+              </div>   
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.facil_acceso"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Fácil acceso (Av. Cll y/o autopistas)
+                  </label>
+              </div>                                           
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.espacioso"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Espacioso
+                  </label>
+              </div>
+          </div>
+
+          <div class="col-md-4">
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.excelente_ubicacion"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Excelente ubicación
+                  </label>
+              </div>            
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.ideal_para_ejecutivos"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Ideal para ejecutivos
+                  </label>
+              </div>
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.remodelada"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Remodelada
+                  </label>
+              </div>            
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.zona_tranquila"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Zona tranquila
+                  </label>
+              </div>
+          </div>
+
+          <div class="col-md-4">
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.condominio_economico"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Condominio económico
+                  </label>
+              </div>                        
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.excelente_vista"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Excelente vista
+                  </label>
+              </div> 
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.listo_para_mudarse"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Listo para mudarse
+                  </label>
+              </div> 
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.tipo_estudio"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Tipo estudio
+                  </label>
+              </div> 
+          </div>
+        </div>        
+
+        <hr>
+
+        <span>Cercanias a menos de dos cuadras</span>               
+        <br><br>
+        <div class="row checkbox-options">                     
+          <div class="col-md-4">                        
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.abasto"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Abasto
+                  </label>
+              </div>
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.panaderia"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Panaderia
+                  </label>
+              </div>                                              
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.centro_comercial"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Centro comercial
+                  </label>
+              </div>
+          </div>
+
+          <div class="col-md-4">
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.farmacia"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Farmacia
+                  </label>
+              </div>
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.supermercado"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Supermercado
+                  </label>
+              </div>                        
+          </div>
+
+          <div class="col-md-4">
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.colegio"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Colegio
+                  </label>
+              </div>
+              <div class="checkbox">
+                  <label>
+                  <input type="checkbox" ng-model="detail.otros_negocios"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                      Otros negocios
+                  </label>
+              </div>                    
+          </div>
+        </div>
+
+        <hr>
+
+        <span>Negociación</span>               
+        <br><br>
+        <div class="row checkbox-options">                  
+            <div class="col-md-4">                        
+                <div class="checkbox">
+                    <label>
+                    <input type="checkbox" ng-model="detail.negociable"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                        Negociable
+                    </label>
+                </div>                           
+            </div>
+        </div>
+
+        <hr>
+
+        <span>Condiciones de negociación</span>               
+        <br><br>
+        <div class="row checkbox-options">                     
+            <div class="col-md-4">                        
+                <div class="checkbox">
+                    <label>
+                    <input type="checkbox" ng-model="detail.abstenerse_intermediarios"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                        Abstenerse Intermediarios 
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                    <input type="checkbox" ng-model="detail.de_contado"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                        De contado
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                    <input type="checkbox" ng-model="detail.trato_directo"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                        Trato directo con el dueño
+                    </label>
+                </div>                                              
+            </div>
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                    <input type="checkbox" ng-model="detail.acuerdo_entre_las_partes"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                        Acuerdo entre las partes
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                    <input type="checkbox" ng-model="detail.verlo_previa_cita"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                        Verlo previa cita
+                    </label>
+                </div>                        
+            </div>
+            <div class="col-md-4">
+                <div class="checkbox">
+                    <label>
+                    <input type="checkbox" ng-model="detail.credito_hipotecario"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                        Crédito hipotecario
+                    </label>
+                </div>
+                <div class="checkbox">
+                    <label>
+                    <input type="checkbox" ng-model="detail.se_escuchan_ofertas"
+                    ng-true-value="1" ng-false-value="0" disabled>
+                        Se escuchan ofertas
+                    </label>
+                </div>                      
+            </div>
+        </div>   
+
+        <hr>    
+
+        <div class="row">
+          <div class="form-group">
+              <label for="comment" class="col-md-2">Comentario:</label>
+              <div class="col-md-6">
+                  <textarea class="form-control" rows="5" id="comment" ng-model="detail.comentario" disabled>
+                  </textarea>
+              </div>
+          </div>
+        </div>
+
+        <hr> 
+
+        <span>Ubicación</span>
+        <br><br>
+        <div class="row">
+          <div class="col-md-6">
+            <form class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-sm-6 control-label">Urbanización:</label>
+                  <div class="col-sm-6">
+                    <p class="form-control-static">{{detail.urbanizacion}}</p>
+                  </div>
+                </div>
+              </form>
+              <form class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-sm-6 control-label">Dirección:</label>
+                  <div class="col-sm-6">
+                    <p class="form-control-static">{{detail.direccion}}</p>
+                  </div>
+                </div>
+              </form>
+            </div>
+        </div>
+
+        <hr> 
+
+        <span>Precio</span>
+        <br><br>
+        <div class="row">
+          <div class="col-md-6">
+            <form class="form-horizontal">
+                <div class="form-group">
+                  <label class="col-sm-6 control-label">Precio:</label>
+                  <div class="col-sm-6">
+                    <p class="form-control-static">{{detail.precio}} Bs.</p>
+                  </div>
+                </div>
+              </form>
+            </div>
+        </div>
+
+        <hr> 
+
+        <div class="row">
+          <button class="btn btn-primary pull-right" data-dismiss="modal">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
