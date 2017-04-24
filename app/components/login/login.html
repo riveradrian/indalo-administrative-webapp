@@ -1,18 +1,26 @@
-    <div class="container">
+<div class="container-login">
+    <div class="container-form wow zoomIn animated" data-wow-duration="2s">
+        <div class="triangle"></div>
+        
+        <div class="content-login-info md-padding">
+            <h3>Bienvenido</h3>
+            <h4>Iniciar sesión</h4>
+            <hr />
+            <div layout="column">
+                <md-input-container>
+                    <md-icon>person</md-icon>
+                    <input ng-model="user.email" type="text" placeholder="Email">
+                </md-input-container>
 
-      <form class="form-signin" ng-submit="auth.login(email, pass)">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" ng-model="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" ng-model="pass" id="inputPassword" class="form-control" placeholder="Password" required>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
+                <md-input-container>
+                    <md-icon>vpn_key</md-icon>
+                    <input ng-model="user.pass" type="password" placeholder="Contraseña">
+                </md-input-container>
+            </div>
+            <section layout="column" layout-align="center strech" layout-wrap>
+                <md-button ui-sref="menu" class="md-raised md-warn">Entrar</md-button>
+                <md-button class="md-default">¿Olvido su contraseña?</md-button>
+            </section>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" 
-          ui-sref="menu" ui-sref-active="active" type="submit">Sign in</button>
-      </form>
-
-    </div> <!-- /container -->
+    </div>                
+</div>
